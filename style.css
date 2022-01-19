@@ -27,9 +27,14 @@
 .screen {
   border: 2px ridge black;
   border-radius: 5px;
-  text-align: center;
+  text-align: end;
   padding: 3px;
   margin: 5px;
+  height: 10%;
+}
+
+.results {
+  font-weight: 100;
 }
 
 .btns {
@@ -43,8 +48,15 @@ button {
   padding: 5px;
   margin: 2px;
   background-color: rgb(166, 185, 185);
+  transition: all 0.07s ease;
   border: none;
   border-radius: 3px;
+}
+
+.clicked {
+  transform: scale(0.9);
+  border-color: rgb(0, 255, 255);
+  box-shadow: 0 0 1rem rgb(0, 255, 255);
 }
 
 #clear {

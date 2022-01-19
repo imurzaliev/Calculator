@@ -21,4 +21,24 @@ const divide = (arr) => {
 const operate = (operator, numbers) => {
   return operator(numbers);
 };
-console.log(operate(add, [2, 4, 3, 1]));
+
+let display = [];
+
+const screen = document.getElementsByClassName("results");
+const buttons = document.querySelectorAll("button");
+function onClick() {
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      button.classList.add("clicked");
+      screen[0].innerText = screen[0].innerText.concat(button.value);
+      if (button.value == "c") {
+        screen[0].innerText = "";
+      }
+      display = display.concat(button.value);
+    }),
+      button.addEventListener("transitionend", () => {
+        button.classList.remove("clicked");
+      });
+  });
+}
+onClick();
