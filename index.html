@@ -12,32 +12,28 @@
     <div class="container">
       <div class="calculator">
         <div class="screen">
-          <div class="results"></div>
+          <div class="previous-operand"></div>
           <div class="current-operand"></div>
         </div>
         <div class="btns">
-          <button class="bigger-btn" value="c" id="clear" data-key="46">
-            AC
-          </button>
-          <button class="sign" value="backspace" id="delete">&larr;</button>
-          <button class="sign" value="x" id="multiply" data-key="88">x</button>
-          <button class="digit" value="1" data-key="49">1</button>
-          <button class="digit" value="2" data-key="50">2</button>
-          <button class="digit" value="3" data-key="51">3</button>
-          <button class="sign" value="/" id="divide" data-key="191">/</button>
-          <button class="digit" value="4" data-key="52">4</button>
-          <button class="digit" value="5" data-key="53">5</button>
-          <button class="digit" value="6" data-key="54">6</button>
-          <button class="sign" value="+" id="add" data-key="61">+</button>
-          <button class="digit" value="7" data-key="55">7</button>
-          <button class="digit" value="8" data-key="56">8</button>
-          <button class="digit" value="9" data-key="57">9</button>
-          <button class="sign" value="-" id="subtract" data-key="173">-</button>
-          <button class="sign" id="decimals">.</button>
-          <button class="digit" value="0" data-key="48">0</button>
-          <button class="bigger-btn" value="=" id="equal" data-key="32">
-            =
-          </button>
+          <button data-sign class="bigger-btn" value="c">AC</button>
+          <button data-sign class="sign" value="backspace">&larr;</button>
+          <button data-sign class="sign" value="x">x</button>
+          <button data-digit class="digit" value="1">1</button>
+          <button data-digit class="digit" value="2">2</button>
+          <button data-digit class="digit" value="3">3</button>
+          <button data-sign class="sign" value="/">/</button>
+          <button data-digit class="digit" value="4">4</button>
+          <button data-digit class="digit" value="5">5</button>
+          <button data-digit class="digit" value="6">6</button>
+          <button data-sign class="sign" value="+">+</button>
+          <button data-digit class="digit" value="7">7</button>
+          <button data-digit class="digit" value="8">8</button>
+          <button data-digit class="digit" value="9">9</button>
+          <button data-sign class="sign" value="-">-</button>
+          <button data-digit class="sign" value=".">.</button>
+          <button data-digit class="digit" value="0">0</button>
+          <button data-equal class="bigger-btn" value="=">=</button>
         </div>
       </div>
     </div>
