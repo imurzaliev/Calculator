@@ -18,7 +18,9 @@ function clear() {
   currentOperation = undefined;
 }
 
-function del() {}
+function del() {
+  currentOperand = currentOperand.slice(0, -1, "");
+}
 
 function appendNumber(number) {
   if (number === "." && currentOperand.includes(".")) return;
@@ -82,5 +84,15 @@ operationButtons.forEach((button) => {
 
 equalsButton.addEventListener("click", (button) => {
   compute();
+  updateDisplay();
+});
+
+clearButton.addEventListener("click", (button) => {
+  clear();
+  updateDisplay();
+});
+
+deleteButton.addEventListener("click", (button) => {
+  del();
   updateDisplay();
 });
