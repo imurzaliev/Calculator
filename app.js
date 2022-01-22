@@ -35,7 +35,31 @@ function chooseOperation(operation) {
   currentOperand = "";
 }
 
-function compute() {}
+function compute() {
+  let computation;
+  const prev = parseFloat(previousOperand);
+  const current = parseFloat(currentOperand);
+  if (isNaN(prev) || isNaN(current)) return;
+  switch (currentOperation) {
+    case "+":
+      computation = prev + current;
+      break;
+    case "-":
+      computation = prev - current;
+      break;
+    case "x":
+      computation = prev * current;
+      break;
+    case "/":
+      computation = prev / current;
+      break;
+    default:
+      return;
+  }
+  currentOperand = computation;
+  operation = undefined;
+  previousOperand = "";
+}
 
 function updateDisplay() {
   currentOperandScreen[0].innerText = currentOperand;
@@ -54,4 +78,9 @@ operationButtons.forEach((button) => {
     chooseOperation(button.value);
     updateDisplay();
   });
+});
+
+equalsButton.addEventListener("click", (button) => {
+  compute();
+  updateDisplay();
 });
