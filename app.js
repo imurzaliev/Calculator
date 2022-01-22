@@ -1,7 +1,6 @@
 let currentOperand = "";
 let previousOperand = "";
 let currentOperation = undefined;
-let clearScreen = false;
 
 const currentOperandScreen = document.getElementsByClassName("current-operand");
 const previousOperandScreen =
@@ -59,13 +58,36 @@ function compute() {
       return;
   }
   currentOperand = computation;
-  operation = undefined;
+  currentOperation = undefined;
   previousOperand = "";
 }
 
+function getDisplayNumber(number) {
+  const stringNum = number.toString();
+  const integerDigits = parseFloat(stringNum.split(".")[0]);
+  const decilamDigits = stringNum.split(".")[1];
+  let integerDisplay;
+  if (isNaN(integerDigits)) {
+    integerDisplay = "";
+  } else {
+    integerDisplay = integerDigits.toLocaleString("en", {
+      maximumFractionDigits: 0,
+    });
+  }
+  if (decilamDigits != null) {
+    return `${integerDisplay},${decilamDigits}`;
+  } else {
+    return integerDisplay;
+  }
+}
+
 function updateDisplay() {
-  currentOperandScreen[0].innerText = currentOperand;
-  previousOperandScreen[0].innerText = previousOperand;
+  currentOperandScreen[0].innerText = getDisplayNumber(currentOperand);
+  if (currentOperation != null) {
+    previousOperandScreen[0].innerText = `${previousOperand} ${currentOperation}`;
+  } else {
+    previousOperandScreen[0].innerText = "";
+  }
 }
 
 numberButtons.forEach((button) => {
