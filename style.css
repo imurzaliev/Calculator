@@ -87,3 +87,19 @@ button:active,
   border-color: rgb(0, 255, 255);
   box-shadow: 0 0 1rem rgb(0, 255, 255);
 }
+
+footer {
+  background-color: rgb(73, 97, 97);
+  text-align: center;
+}
+
+h2 {
+  font-size: 0.7rem;
+  color: white;
+  padding: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+}
