@@ -57,7 +57,7 @@ function compute() {
     default:
       return;
   }
-  currentOperand = computation;
+  currentOperand = Math.round(computation * 1000) / 1000;
   currentOperation = undefined;
   previousOperand = "";
 }
@@ -82,6 +82,11 @@ function getDisplayNumber(number) {
 }
 
 function updateDisplay() {
+  if (currentOperand == Infinity) {
+    alert("HAVE YOU LOST YOUR MIND? IF SO I'LL HELP YOU FIND IT");
+    clear();
+  }
+
   currentOperandScreen[0].innerText = getDisplayNumber(currentOperand);
   if (currentOperation != null) {
     previousOperandScreen[0].innerText = `${previousOperand} ${currentOperation}`;
@@ -104,17 +109,31 @@ operationButtons.forEach((button) => {
   });
 });
 
-equalsButton.addEventListener("click", (button) => {
+equalsButton.addEventListener("click", () => {
   compute();
   updateDisplay();
 });
 
-clearButton.addEventListener("click", (button) => {
+clearButton.addEventListener("click", () => {
   clear();
   updateDisplay();
 });
 
-deleteButton.addEventListener("click", (button) => {
+deleteButton.addEventListener("click", () => {
   del();
   updateDisplay();
 });
+
+// For some reason this part is not functioning correctly,
+// digits don't show up on the screen until button not pressed
+window.addEventListener("keydown", handleKeyboardInput);
+function handleKeyboardInput(e) {
+  if ((e.key >= 0 && e.key <= 9) || e.key == ".") {
+    appendNumber(e.key);
+  }
+  if (e.key === "=" || e.key === "Enter") compute();
+  if (e.key === "Backspace") del();
+  if (e.key === "Escape") clear();
+  if (e.key === "+" || e.key === "-" || e.key === "x" || e.key === "/")
+    chooseOperation(e.key);
+}
