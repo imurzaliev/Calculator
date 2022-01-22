@@ -38,7 +38,7 @@
   overflow: hidden;
 }
 
-.results {
+.previous-operand {
   color: rgba(0, 0, 0, 0.5);
 }
 .current-operand {
@@ -81,7 +81,8 @@ button:hover,
   color: rgb(0, 255, 255);
 }
 
-.clicked {
+button:active,
+#clear:active {
   transform: scale(0.9);
   border-color: rgb(0, 255, 255);
   box-shadow: 0 0 1rem rgb(0, 255, 255);

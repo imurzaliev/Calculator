@@ -1,44 +1,57 @@
-const add = (arr) => {
-  return arr.reduce((total, currentNum) => (total += currentNum), 0);
-};
+let currentOperand = "";
+let previousOperand = "";
+let currentOperation = undefined;
+let clearScreen = false;
 
-const substract = (arr) => {
-  return arr.reduce((total, currentNum) => (total -= currentNum));
-};
+const currentOperandScreen = document.getElementsByClassName("current-operand");
+const previousOperandScreen =
+  document.getElementsByClassName("previous-operand");
+const numberButtons = document.querySelectorAll("[data-digit]");
+const operationButtons = document.querySelectorAll("[data-sign]");
+const equalsButton = document.querySelector("[data-equals]");
+const deleteButton = document.querySelector("[data-delete]");
+const clearButton = document.querySelector("[data-clear]");
 
-const multiply = (arr) => {
-  return arr.length
-    ? arr.reduce((accumulator, nextNum) => accumulator * nextNum)
-    : 0;
-};
-
-const divide = (arr) => {
-  return arr.length
-    ? arr.reduce((accumulator, nextNum) => accumulator / nextNum)
-    : 0;
-};
-
-const operate = (operator, numbers) => {
-  return operator(numbers);
-};
-
-let display = [];
-
-const screen = document.getElementsByClassName("results");
-const buttons = document.querySelectorAll("button");
-function onClick() {
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      button.classList.add("clicked");
-      screen[0].innerText = screen[0].innerText.concat(button.value);
-      if (button.value == "c") {
-        screen[0].innerText = "";
-      }
-      display = display.concat(button.value);
-    }),
-      button.addEventListener("transitionend", () => {
-        button.classList.remove("clicked");
-      });
-  });
+function clear() {
+  currentOperand = "";
+  previousOperand = "";
+  currentOperation = undefined;
 }
-onClick();
+
+function del() {}
+
+function appendNumber(number) {
+  if (number === "." && currentOperand.includes(".")) return;
+  currentOperand += number;
+}
+
+function chooseOperation(operation) {
+  if (currentOperand === "") return;
+  if (previousOperand !== "") {
+    compute();
+  }
+  currentOperation = operation;
+  previousOperand = currentOperand;
+  currentOperand = "";
+}
+
+function compute() {}
+
+function updateDisplay() {
+  currentOperandScreen[0].innerText = currentOperand;
+  previousOperandScreen[0].innerText = previousOperand;
+}
+
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    appendNumber(button.value);
+    updateDisplay();
+  });
+});
+
+operationButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    chooseOperation(button.value);
+    updateDisplay();
+  });
+});
